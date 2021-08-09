@@ -226,7 +226,10 @@
 				const mousepos = getMousePos(ev);
 				const transX = 2*this.CONFIG.tilt.maxTranslationX/win.width*mousepos.x - this.CONFIG.tilt.maxTranslationX;
 				const transY = 2*this.CONFIG.tilt.maxTranslationY/win.height*mousepos.y - this.CONFIG.tilt.maxTranslationY;
-				this.grids[this.current].tilt({translateX: transX, translateY: transY});
+				if(transX < 50 && transY< 50 ){
+					this.grids[this.current].tilt({translateX: transX, translateY: transY});
+				}
+				
 			});	
 		}
 		onresize(ev) {
