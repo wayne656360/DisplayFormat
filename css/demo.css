@@ -1,0 +1,140 @@
+
+
+body {
+	/* Grid gap */
+	--gap: 10px;
+}
+
+
+.hidden {
+	position: absolute;
+	overflow: hidden;
+	width: 0;
+	height: 0;
+	pointer-events: none;
+}
+
+/* Grid */
+.grid {
+	display: grid;
+	width: 100%;
+	height: 100vh;
+	grid-auto-rows: calc((calc(100vh - 15%) / 25) - var(--gap));
+	grid-auto-columns: calc((calc(100vw - 15%) / 25) - var(--gap));
+	justify-content: center;
+	align-content: center;
+	grid-gap: var(--gap);
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	opacity: 0;
+	pointer-events: none;
+}
+
+.no-js .grid {
+	margin: 0 0 15vh;
+}
+
+.js .grid {
+	position: absolute;
+	top: 3em;
+	left: 3em;
+	opacity: 0;
+}
+
+.grid--current {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.grid__item {
+	position: relative;
+	padding: 1em;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	transition: transform 0.2s ease-out;
+}
+
+
+
+
+
+
+
+
+.grid__item--nav {
+	background: white
+}
+
+.grid__item--nav:hover {
+	background: #1f1f1f;
+	background: var(--grid-nav-bg-hover);
+	color: #fff;
+	color: var(--grid-nav-text-hover);
+}
+
+
+.grid__item--animateOut {
+	animation: animateOut 1s ease forwards ease;
+}
+
+@keyframes animateOut {
+	to {
+		opacity: 0;
+	}
+}
+
+.grid__item--animateIn {
+	animation: animateIn 1s cubic-bezier(0.7,0,0.3,1) forwards ease;
+}
+
+@keyframes animateIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/* Layout 1 */
+.grid--layout-1 .grid__item:nth-child(3) { grid-area: 2 / 3 / 11 / 7; background-image: url(../img/1.jpg); background-size: contain;}
+.grid--layout-1 .grid__item:nth-child(4) { grid-area: 2 / 22 / 12 / 30 ;background-image: url(../img/2.jpg); background-size: contain;}
+.grid--layout-1 .grid__item:nth-child(5) { grid-area: 17 ​/ 1/ 24 / 5 ;background-image: url(../img/2.jpg); background-size: contain;}
+.grid--layout-1 .grid__item:nth-child(6) { grid-area: 17 ​/ 24 / 24 / 28 ;background-image: url(../img/3.jpg); background-size: contain;}
+.grid--layout-1 .grid__item--nav-prev { grid-area: 1 / 1 / 1 / 1; }
+.grid--layout-1 .grid__item--nav-next { grid-area: 1 / 1 / 1 / 1; }
+/* Layout 2 */
+.grid--layout-2 .grid__item:nth-child(3) { grid-area: 5 / 4 / 12 / 8; background-image: url(../img/3.jpg); background-size: contain;}
+.grid--layout-2 .grid__item:nth-child(4) { grid-area: 2 / 25 / 9 / 29 ;background-image: url(../img/1.jpg); background-size: contain;}
+.grid--layout-2 .grid__item:nth-child(5) { grid-area: 17 ​/ 6/ 28 / 12 ;background-image: url(../img/1.jpg); background-size: contain;}
+.grid--layout-2 .grid__item:nth-child(6) { grid-area: 17 ​/ 24 / 27 / 34 ;background-image: url(../img/2.jpg); background-size: contain;}
+.grid--layout-1 .grid__item--nav-prev { grid-area: 1 / 1 / 1 / 1; }
+.grid--layout-1 .grid__item--nav-next { grid-area: 1 / 1 / 1 / 1; }
+
+
+
+
+/* Demo themes */
+
+
+.demo-3 div.grid__item:not(.grid__item--nav)::after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: #0013ff;
+	mix-blend-mode: exclusion;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.3s;
+}
+
+.demo-3 .grid:not(.grid--animating) div.grid__item:not(.grid__item--nav):hover::after {
+	opacity: 1;
+}
+
